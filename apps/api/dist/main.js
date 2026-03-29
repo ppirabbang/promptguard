@@ -15,7 +15,15 @@ async function bootstrap() {
     app.useGlobalFilters(new http_exception_filter_1.HttpExceptionFilter());
     app.useGlobalInterceptors(new logging_interceptor_1.LoggingInterceptor());
     // CORS
-    app.enableCors();
+    app.enableCors({
+        origin: [
+            'http://localhost:5173', // Vite 프론트
+            'http://127.0.0.1:5173',
+        ],
+        credentials: true,
+        methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE', 'OPTIONS'],
+        allowedHeaders: ['Content-Type', 'Authorization', 'x-admin-key'],
+    });
     // Swagger 문서
     const swagger = new swagger_1.DocumentBuilder()
         .setTitle('Prompt Guard API')
@@ -23,7 +31,8 @@ async function bootstrap() {
         .setVersion('1.0')
         .addApiKey({ type: 'apiKey', name: 'x-admin-key', in: 'header' }, 'x-admin-key')
         .build();
-    swagger_1.SwaggerModule.setup('docs', app, swagger_1.SwaggerModule.createDocument(app, swagger));
+    const document = swagger_1.SwaggerModule.createDocument(app, swagger);
+    swagger_1.SwaggerModule.setup('docs', app, document);
     const config = app.get(config_1.ConfigService);
     const port = config.get('app.port', 3000);
     await app.listen(port);

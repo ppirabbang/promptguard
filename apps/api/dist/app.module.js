@@ -17,10 +17,11 @@ const analyze_controller_1 = require("./modules/analyze/analyze.controller");
 const analyze_service_1 = require("./modules/analyze/analyze.service");
 const rules_controller_1 = require("./modules/rules/rules.controller");
 const rules_service_1 = require("./modules/rules/rules.service");
-const rules_repository_1 = require("./modules/rules/rules.repository");
 const audit_log_module_1 = require("./modules/audit-log/audit-log.module");
 const health_controller_1 = require("./modules/health/health.controller");
 const admin_guard_1 = require("./common/guards/admin.guard");
+const admin_auth_controller_1 = require("./modules/admin-auth/admin-auth.controller");
+const admin_auth_service_1 = require("./modules/admin-auth/admin-auth.service");
 let AppModule = class AppModule {
 };
 exports.AppModule = AppModule;
@@ -37,12 +38,14 @@ exports.AppModule = AppModule = __decorate([
             analyze_controller_1.AnalyzeController,
             rules_controller_1.RulesController,
             health_controller_1.HealthController,
+            admin_auth_controller_1.AdminAuthController,
         ],
         providers: [
             analyze_service_1.AnalyzeService,
             rules_service_1.RulesService,
             rules_repository_1.RulesRepository,
             admin_guard_1.AdminGuard,
+            admin_auth_service_1.AdminAuthService,
         ],
     })
 ], AppModule);

@@ -12,7 +12,6 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.RulesService = void 0;
 const common_1 = require("@nestjs/common");
 const rule_engine_1 = require("@prompt-guard/rule-engine");
-const rules_repository_1 = require("./rules.repository");
 const audit_log_service_1 = require("../audit-log/audit-log.service");
 let RulesService = class RulesService {
     constructor(repo, auditLogService) {
