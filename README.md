@@ -161,18 +161,4 @@ npm run build   # Wasm 빌드 (extension/build/ 에 출력)
 node_modules/
 ```
 
-> `extension/build/` 폴더는 **포함**시켜야 합니다.
-> 팀원이 빌드 환경 없이도 바로 확장을 로드할 수 있어야 하기 때문입니다.
-
 ---
-
-## LLM 2차 분석 서버 (선택)
-
-`medium` 등급 프롬프트는 로컬 서버(`http://localhost:3000/api/analyze`)로 전송됩니다.
-서버가 없으면 Wasm 결과를 신뢰하여 전송을 허가합니다(Fail-Open).
-
-서버 응답 형식:
-```json
-{ "isSafe": true }
-{ "isSafe": false, "reason": "악성 의도 감지됨" }
-```
